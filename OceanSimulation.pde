@@ -3,6 +3,11 @@ ArrayList<Wave> waves;
 SimpleCamera cam;
 
 float time = 0.0;
+//contrôles globaux
+boolean showHUD = true;
+boolean wireframe = false;
+float amplitudeScale = 1.0;   
+float speedScale     = 1.0;
 
 void setup() {
   size(1280, 720, P3D);
@@ -33,13 +38,15 @@ void draw() {
 
 // HUD / TEXTE
 void drawOverlay() {
+  if (!showHUD) return;  // on n'affiche rien si HUD caché
+
   hint(DISABLE_DEPTH_TEST);
   camera();          
   noLights();
 
   fill(0, 0, 0, 170);
   noStroke();
-  rect(15, 15, 280, 100, 12);
+  rect(15, 15, 320, 130, 12);
 
   fill(100, 200, 255);
   textAlign(LEFT, TOP);
@@ -58,7 +65,7 @@ void drawOverlay() {
 // gestion vagues 3 bandes  grosse / moyenne / fine
 void initWaves() {
   waves = new ArrayList<Wave>();
-  
+
   for (int i = 0; i < 6; i++) {
     waves.add(createWave(2.5, 4.5, 140, 260));
   }

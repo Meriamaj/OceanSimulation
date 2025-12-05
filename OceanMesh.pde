@@ -37,7 +37,8 @@ class OceanMesh {
 
   // Update : Gerstner + filtrage perceptuel
   void update(ArrayList<Wave> waves, float t, SimpleCamera cam) {
-
+    float ox = cam.getPosition().x;
+    float oz = cam.getPosition().z;
     PVector camPos = cam.getPosition();
     float camH = abs(camPos.y);
 
